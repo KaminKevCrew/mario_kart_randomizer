@@ -3,26 +3,24 @@
 # DATE: June 26, 2020
 # DESC: Randomizer for Mario Kart setups.
 
-import atvs
-import bikes
-import characters
-import gliders
-import karts
-import wheels
+
+from characters import characters
+from gliders import gliders
+from vehicles import vehicles
+from wheels import wheels
 from random import randrange
 
 
 def randomizer():
-  vehicles = atvs + bikes + karts
   build = []
 
   for category in [characters, gliders, vehicles, wheels]:
-    build.append(category[randrange(0, category.length)])
+    build.append(category[randrange(0, len(category))])
 
   return build
 
 def _main():
-  p randomizer()
+  print(randomizer())
 
 if __name__ == '__main__':
     _main()
