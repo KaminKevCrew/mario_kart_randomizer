@@ -5,16 +5,40 @@
 
 
 from characters import characters
-from gliders import gliders
-from vehicles import vehicles
+from karts import karts
+from atvs import atvs
+from bikes import bikes
 from wheels import wheels
+from gliders import gliders
 from random import randrange
 
 
 def randomizer():
   build = []
+  category_list = []
+  print("Please select the categories you would like to randomize: ")
+  print("Separate selections with space: all charaters karts bikes atvs wheels gliders")
 
-  for category in [characters, gliders, vehicles, wheels]:
+  user_input = input()
+  selection = user_input.split(" ")
+
+  vehicles = karts + atvs + bikes + atvs
+
+  category_dict = {
+    "all": [characters, vehicles, wheels, gliders],
+    "characters": [characters],
+    "karts": [karts],
+    "bikes": [bikes],
+    "atvs": [atvs],
+    "wheels": [wheels],
+    "gliders": [gliders]
+  }
+
+  for item in selection:
+    if item in category_dict:
+      category_list += category_dict[item]
+
+  for category in category_list:
     build.append(category[randrange(0, len(category))])
 
   return build
